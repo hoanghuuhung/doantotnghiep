@@ -9,7 +9,10 @@
                 url: '/control',
                 templateUrl: 'app/components/control/control.html',
                 controller: 'ControlController',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                 ncyBreadcrumb: {
+                label: 'Điều khiển'
+            }
             });
     }
 })();

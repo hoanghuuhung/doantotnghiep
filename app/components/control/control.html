@@ -1,1 +1,120 @@
-{{vm.data}}
+<div class="row">
+    <div class="col-md-12">
+
+        <div> {{vm.connected?'Đã kết nối' : 'Chưa kết nối'}}</div>
+        <br>
+        <div class="panel panel-green">
+            <div class="panel-heading">KHU VỰC 1</div>
+            <div class="panel-body pan">
+                <form class="form-horizontal ng-pristine ng-valid form-validate">
+                    <div class="form-body pal">
+                        <table class="table table-hover table-striped table-bordered table-advanced tablesorter">
+                            <thead>
+                                <tr>
+                                    <th width="33%">NHIỆT ĐỘ</th>
+                                    <th width="33%">ĐỘ ẨM</th>
+                                    <th width="33%">ĐỘ ẨM ĐẤT</th>
+                                </tr>
+                                <tbody>
+                                    <tr>
+                                        <td>{{vm.zone_1.temp || 30}}</td>
+                                        <td>{{vm.zone_1.hud}}</td>
+                                        <td>{{vm.zone_1.soil_hud}}</td>
+                                    </tr>
+                                </tbody>
+                            </thead>
+                        </table>
+                        <table class="table table-hover table-striped table-bordered table-advanced tablesorter">
+                            <thead>
+                                <tr>
+                                    <th width="33%">BƠM</th>
+                                    <th width="33%">QUẠT</th>
+                                    <th width="33%">LÒ SƯỞI</th>
+                                </tr>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <label class="switch">
+                                     <input type="checkbox">
+               <div class="slider round"></div>
+                   </label>
+                                        </td>
+                                        <td><label class="switch">
+  <input type="checkbox" ng-checked="vm.fan_1" ng-model="vm.fan_1" ng-click="vm.fan1Change()">
+  <div class="slider round"></div>
+</label></td>
+                                        <td><label class="switch">
+  <input type="checkbox">
+  <div class="slider round"></div>
+</label></td>
+                                    </tr>
+                                </tbody>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="form-action">"
+                        <div class="col-md-offset-3 col-md-9 ">
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="panel panel-green">
+            <div class="panel-heading">KHU VỰC 2</div>
+            <div class="panel-body pan">
+                <form class="form-horizontal ng-pristine ng-valid form-validate">
+                    <div class="form-body pal">
+                        <table class="table table-hover table-striped table-bordered table-advanced tablesorter">
+                            <thead>
+                                <tr>
+                                    <th width="33%">NHIỆT ĐỘ</th>
+                                    <th width="33%">ĐỘ ẨM</th>
+                                    <th width="33%">ĐỘ ẨM ĐẤT</th>
+                                </tr>
+                                <tbody>
+                                    <tr>
+                                        <td>{{vm.zone_2.temp}}</td>
+                                        <td>{{vm.zone_2.hud}}</td>
+                                        <td>{{vm.zone_2.soil_hud}}</td>
+                                    </tr>
+                                </tbody>
+                            </thead>
+                        </table>
+                        <table class="table table-hover table-striped table-bordered table-advanced tablesorter">
+                            <thead>
+                                <tr>
+                                    <th width="33%">BƠM</th>
+                                    <th width="33%">QUẠT</th>
+                                    <th width="33%">LÒ SƯỞI</th>
+                                </tr>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <label class="switch">
+                                     <input type="checkbox">
+               <div class="slider round"></div>
+                   </label>
+                                        </td>
+                                        <td><label class="switch">
+  <input type="checkbox" ng-checked="vm.fan_1" ng-model="vm.fan_1" ng-click="vm.fan1Change()">
+  <div class="slider round"></div>
+</label></td>
+                                        <td><label class="switch">
+  <input type="checkbox">
+  <div class="slider round"></div>
+</label></td>
+                                    </tr>
+                                </tbody>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="form-action">"
+                        <div class="col-md-offset-3 col-md-9 ">
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div </div>
+    </div>

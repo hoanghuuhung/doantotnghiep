@@ -6,6 +6,11 @@
     function ControlController($state, $localStorage, messageShow, $timeout, WIoT, $timeout) {
 
         var vm = this;
+        vm.zone_1 = {};
+        vm.zone_2 = {};
+        vm.fan_1 = true;
+        vm.fan1Change = fan1Change;
+        vm.connected = false;
         var config = {
             "org": "8usbvc",
             "id": "myapp",
@@ -20,7 +25,7 @@
             appClient.connect();
         }, 300)
         appClient.on("connect", function () {
-
+            vm.connected = true;
             // var myData = { 'onfan': 1 };
             // myData = JSON.stringify(myData);
             // setInterval(function () {
@@ -29,7 +34,6 @@
             // }, 1000)
             appClient.subscribeToDeviceEvents();
         })
-
         appClient.on("deviceEvent", function (deviceType, deviceId, eventType, format, payload) {
             var arr = {};
             $timeout(function () {
@@ -62,7 +66,12 @@
         });
 
         appClient.on("error", function (err) {
+            vm.connected = false;
             console.log("Error : " + err);
         })
+
+        function fan1Change(){
+            console.log(vm.fan_1);
+        }
     }
 })();
