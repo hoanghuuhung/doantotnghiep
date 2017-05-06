@@ -24,7 +24,7 @@
         vm.lightChange = lightChange;
         vm.modeChange = modeChange;
         vm.connected = false;
-        vm.wait = true;
+        vm.wait = false;
         vm.socket = io.connect('https://hoanghuuhung.herokuapp.com/device-node');
         var config = {
             "org": "8usbvc",
