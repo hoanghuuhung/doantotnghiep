@@ -1,6 +1,7 @@
 <div class="row">
     <div class="col-md-12">
-
+{{vm.data}}
+{{vm.data2}}
         <div> {{vm.connected?'Đã kết nối' : 'Chưa kết nối'}}</div>
         <br>
         <div class="panel panel-green">
@@ -17,9 +18,9 @@
                                 </tr>
                                 <tbody>
                                     <tr>
-                                        <td>{{vm.zone_1.temp || 30}}</td>
-                                        <td>{{vm.zone_1.hud}}</td>
-                                        <td>{{vm.zone_1.soil_hud}}</td>
+                                        <td>{{vm.zone_1[0] || 30}}</td>
+                                        <td>{{vm.zone_1[1]}}</td>
+                                        <td>{{vm.zone_1[2]}}</td>
                                     </tr>
                                 </tbody>
                             </thead>
@@ -74,9 +75,9 @@
                                 </tr>
                                 <tbody>
                                     <tr>
-                                        <td>{{vm.zone_2.temp}}</td>
-                                        <td>{{vm.zone_2.hud}}</td>
-                                        <td>{{vm.zone_2.soil_hud}}</td>
+                                        <td>{{vm.zone_2[0]}}</td>
+                                        <td>{{vm.zone_2[1]}}</td>
+                                        <td>{{vm.zone_2[2]}}</td>
                                     </tr>
                                 </tbody>
                             </thead>
@@ -97,7 +98,7 @@
                    </label>
                                         </td>
                                         <td><label class="switch">
-  <input type="checkbox" ng-checked="vm.fan_1" ng-model="vm.fan_1" ng-click="vm.fan1Change()">
+  <input type="checkbox" ng-checked="vm.fan_2" ng-model="vm.fan_2" ng-click="vm.fan1Change()">
   <div class="slider round"></div>
 </label></td>
                                         <td><label class="switch">

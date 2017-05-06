@@ -2,10 +2,6 @@
 # http://git-scm.com/docs/gitignore
 
 node_modules/
-assets/libs/
-assets/css/app.css
-assets/css/app.min.css
 index.html
 debug.log
 *.DS_Store
-app.js
