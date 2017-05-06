@@ -1,121 +1,148 @@
 <div class="row">
     <div class="col-md-12">
-{{vm.data}}
-{{vm.data2}}
-        <div> {{vm.connected?'Đã kết nối' : 'Chưa kết nối'}}</div>
+        <div> {{vm.connected?'Đã kết nối' : 'Đang kết nối'}}
+        </div>
+        <div ng-show="!vm.connected || vm.wait" class="loader" aria-hidden="true"></div>
         <br>
-        <div class="panel panel-green">
-            <div class="panel-heading">KHU VỰC 1</div>
-            <div class="panel-body pan">
-                <form class="form-horizontal ng-pristine ng-valid form-validate">
-                    <div class="form-body pal">
-                        <table class="table table-hover table-striped table-bordered table-advanced tablesorter">
-                            <thead>
-                                <tr>
-                                    <th width="33%">NHIỆT ĐỘ</th>
-                                    <th width="33%">ĐỘ ẨM</th>
-                                    <th width="33%">ĐỘ ẨM ĐẤT</th>
-                                </tr>
-                                <tbody>
+        <br>
+        <br>
+        <br>
+        <strong ng-show="vm.wait">Vui lòng chờ...</strong>
+        <br>
+        <div>
+            <table class="table table-hover table-striped table-bordered table-advanced tablesorter">
+                <thead>
+                    <tr>
+                        <th width="33%">TỰ ĐỘNG / BẰNG TAY </th>
+                        <th width="33%">ĐÈN</th>
+                    </tr>
+                    <tbody>
+                        <tr>
+                            <td> <label class="switch">
+                           <input type="checkbox" ng-disabled="!vm.connected || vm.wait" ng-checked="vm.manual"  ng-click="vm.modeChange()">
+                            <div style="left: 5px;"class="slider round"></div>
+                          </label></td>
+                            <td> <label class="switch">
+                           <input type="checkbox" ng-disabled="!vm.connected || vm.wait" ng-checked="vm.light" >
+                            <div style="left: 5px;"class="slider round"></div>
+                          </label></td>
+                        </tr>
+                    </tbody>
+                </thead>
+            </table>
+            <div class="panel panel-green">
+                <div class="panel-heading">KHU VỰC 1</div>
+                <div class="panel-body pan">
+                    <form class="form-horizontal ng-pristine ng-valid form-validate">
+                        <div class="form-body pal">
+                            <table class="table table-hover table-striped table-bordered table-advanced tablesorter">
+                                <thead>
                                     <tr>
-                                        <td>{{vm.zone_1[0] || 30}}</td>
-                                        <td>{{vm.zone_1[1]}}</td>
-                                        <td>{{vm.zone_1[2]}}</td>
+                                        <th width="33%">NHIỆT ĐỘ</th>
+                                        <th width="33%">ĐỘ ẨM</th>
+                                        <th width="33%">ĐỘ ẨM ĐẤT</th>
                                     </tr>
-                                </tbody>
-                            </thead>
-                        </table>
-                        <table class="table table-hover table-striped table-bordered table-advanced tablesorter">
-                            <thead>
-                                <tr>
-                                    <th width="33%">BƠM</th>
-                                    <th width="33%">QUẠT</th>
-                                    <th width="33%">LÒ SƯỞI</th>
-                                </tr>
-                                <tbody>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{vm.zone_1[0]}}</td>
+                                            <td>{{vm.zone_1[1]}}</td>
+                                            <td>{{vm.zone_1[2]}}</td>
+                                        </tr>
+                                    </tbody>
+                                </thead>
+                            </table>
+                            <table class="table table-hover table-striped table-bordered table-advanced tablesorter">
+                                <thead>
                                     <tr>
-                                        <td>
-                                            <label class="switch">
-                                     <input type="checkbox">
+                                        <th ng-class="vm.manual?'enable':''" width="33%">BƠM</th>
+                                        <th ng-class="vm.manual?'enable':''" width="33%">QUẠT</th>
+                                        <th ng-class="vm.manual?'enable':''" width="33%">LÒ SƯỞI</th>
+                                    </tr>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <label class="switch">
+                                     <input ng-disabled="!vm.connected || vm.wait" type="checkbox" ng-checked="vm.pumb_1"  ng-click="vm.pumb1Change()">
                <div class="slider round"></div>
                    </label>
-                                        </td>
-                                        <td><label class="switch">
-  <input type="checkbox" ng-checked="vm.fan_1" ng-model="vm.fan_1" ng-click="vm.fan1Change()">
-  <div class="slider round"></div>
+                                            </td>
+                                            <td><label class="switch">
+                           <input type="checkbox" ng-disabled="!vm.connected || vm.wait" ng-checked="vm.fan_1"  ng-click="vm.fan1Change()">
+                            <div class="slider round"></div>
+                          </label></td>
+                                            <td><label class="switch">
+              <input ng-disabled="!vm.connected || vm.wait" type="checkbox" ng-checked="vm.fan_1"  ng-click="vm.boiler1Change()">
+                    <div class="slider round"></div>
 </label></td>
-                                        <td><label class="switch">
-  <input type="checkbox">
-  <div class="slider round"></div>
-</label></td>
-                                    </tr>
-                                </tbody>
-                            </thead>
-                        </table>
-                    </div>
-                    <div class="form-action">"
-                        <div class="col-md-offset-3 col-md-9 ">
-
+                                        </tr>
+                                    </tbody>
+                                </thead>
+                            </table>
                         </div>
-                    </div>
-                </form>
+                        <div class="form-action">
+                            <div class="col-md-offset-3 col-md-9 ">
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="panel panel-green">
+                <div class="panel-heading">KHU VỰC 2</div>
+                <div class="panel-body pan">
+                    <form class="form-horizontal ng-pristine ng-valid form-validate">
+                        <div class="form-body pal">
+                            <table class="table table-hover table-striped table-bordered table-advanced tablesorter">
+                                <thead>
+                                    <tr>
+                                        <th width="33%">NHIỆT ĐỘ</th>
+                                        <th width="33%">ĐỘ ẨM</th>
+                                        <th width="33%">ĐỘ ẨM ĐẤT</th>
+                                    </tr>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{vm.zone_2[0]}}</td>
+                                            <td>{{vm.zone_2[1]}}</td>
+                                            <td>{{vm.zone_2[2]}}</td>
+                                        </tr>
+                                    </tbody>
+                                </thead>
+                            </table>
+                            <table class="table table-hover table-striped table-bordered table-advanced tablesorter">
+                                <thead>
+                                    <tr>
+                                        <th ng-class="vm.manual?'enable':''" width="33%">BƠM</th>
+                                        <th ng-class="vm.manual?'enable':''" width="33%">QUẠT</th>
+                                        <th ng-class="vm.manual?'enable':''" width="33%">LÒ SƯỞI</th>
+                                    </tr>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <label class="switch">
+                                     <input ng-disabled="!vm.connected || vm.wait" type="checkbox" ng-checked="vm.pumb_2"  ng-click="vm.pumb1Change()">
+               <div class="slider round"></div>
+                   </label>
+                                            </td>
+                                            <td><label class="switch">
+                           <input type="checkbox"  ng-disabled="!vm.connected || vm.wait" ng-checked="vm.fan_2"  ng-click="vm.fan2Change()">
+                            <div class="slider round"></div>
+                          </label></td>
+                                            <td><label class="switch">
+              <input ng-disabled="!vm.connected || vm.wait" type="checkbox" ng-checked="vm.boiler_2"  ng-click="vm.boiler2Change()">
+                    <div class="slider round"></div>
+</label></td>
+                                        </tr>
+                                    </tbody>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="form-action">"
+                            <div class="col-md-offset-3 col-md-9 ">
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-        <div class="panel panel-green">
-            <div class="panel-heading">KHU VỰC 2</div>
-            <div class="panel-body pan">
-                <form class="form-horizontal ng-pristine ng-valid form-validate">
-                    <div class="form-body pal">
-                        <table class="table table-hover table-striped table-bordered table-advanced tablesorter">
-                            <thead>
-                                <tr>
-                                    <th width="33%">NHIỆT ĐỘ</th>
-                                    <th width="33%">ĐỘ ẨM</th>
-                                    <th width="33%">ĐỘ ẨM ĐẤT</th>
-                                </tr>
-                                <tbody>
-                                    <tr>
-                                        <td>{{vm.zone_2[0]}}</td>
-                                        <td>{{vm.zone_2[1]}}</td>
-                                        <td>{{vm.zone_2[2]}}</td>
-                                    </tr>
-                                </tbody>
-                            </thead>
-                        </table>
-                        <table class="table table-hover table-striped table-bordered table-advanced tablesorter">
-                            <thead>
-                                <tr>
-                                    <th width="33%">BƠM</th>
-                                    <th width="33%">QUẠT</th>
-                                    <th width="33%">LÒ SƯỞI</th>
-                                </tr>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <label class="switch">
-                                     <input type="checkbox">
-               <div class="slider round"></div>
-                   </label>
-                                        </td>
-                                        <td><label class="switch">
-  <input type="checkbox" ng-checked="vm.fan_2" ng-model="vm.fan_2" ng-click="vm.fan1Change()">
-  <div class="slider round"></div>
-</label></td>
-                                        <td><label class="switch">
-  <input type="checkbox">
-  <div class="slider round"></div>
-</label></td>
-                                    </tr>
-                                </tbody>
-                            </thead>
-                        </table>
-                    </div>
-                    <div class="form-action">"
-                        <div class="col-md-offset-3 col-md-9 ">
-
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div </div>
     </div>
