@@ -27,7 +27,7 @@
         vm.modeChange = modeChange;
         vm.connected = false;
         vm.wait = false;
-        vm.socket = io.connect('http://localhost:3000/device-node');
+        vm.socket = io.connect('https://hoanghuuhung.herokuapp.com/device-node');
         var config = {
             "org": "8usbvc",
             "id": "myapp",
