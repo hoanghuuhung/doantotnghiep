@@ -427,6 +427,9 @@ Try it Yourself »
 .enable {
   background-color: lightgray !important; }
 
+.btn-rouded {
+  border-radius: 50% !important; }
+
 .primary-color {
   color: #00AB9E; }
 
