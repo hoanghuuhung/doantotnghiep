@@ -409,7 +409,7 @@ Try it Yourself »
   height: 60px;
   -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
-  position: fixed;
+  position: relative;
   z-index: 9999; }
 
 @-webkit-keyframes spin {
