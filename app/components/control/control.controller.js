@@ -131,8 +131,8 @@
                         if (vm.zone_2[6] === "on" || vm.zone_2[6] === "off") {
                             vm.boiler_2 = vm.zone_2[6] === "on" ? true : false;
                         }
-                        if (vm.zone_2[7] === "on" || vm.zone_7[7] === "off") {
-                            vm.manual_2 = vm.zone_2[7] === "on" ? true : false;
+                        if (vm.zone_2[7] === 1 || vm.zone_7[7] === 0) {
+                            vm.manual_2 = vm.zone_2[7] === 1 ? true : false;
                         }
                         console.log(vm.zone_2);
                     }
