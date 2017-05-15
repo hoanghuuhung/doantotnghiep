@@ -6,7 +6,8 @@
     function ControlController($state, $localStorage, messageShow, $timeout) {
 
         var vm = this;
-        vm.manual = true;
+        vm.manual_1 = false;
+        vm.manual_2 = false;
         vm.data2 = {};
         vm.zone_1 = [];
         vm.zone_2 = [];
