@@ -32,8 +32,8 @@
         vm.wait1 = false;
         vm.connected2 = false;
         vm.wait2 = false;
-        var topicPublish1 = "event1";
-        var topicPublish2 = "event2";
+        var topicPublish1 = "control1";
+        var topicPublish2 = "control2";
         // var client = new Paho.MQTT.Client("host", port, "client_id");
         var client = new Paho.MQTT.Client("m20.cloudmqtt.com", 32733, "web_" + parseInt(Math.random() * 100, 10));
 
@@ -55,8 +55,8 @@
         function onConnect() {
             // Once a connection has been made, make a subscription and send a message.
             console.log("onConnect");
-            client.subscribe("control1");
-            client.subscribe("control2");
+            client.subscribe("event1");
+            client.subscribe("event2");
             $timeout(function () {
                 vm.connected1 = true;
                 vm.connected2 = true;
@@ -86,13 +86,13 @@
         // called when a message arrives
         function onMessageArrived(message) {
             console.log("onMessageArrived:" + message.payloadString);
-            if (message.destinationName == "control1") {
+            if (message.destinationName == "event1") {
                 var data = message.payloadString;
                 vm.connected1 = true;
                 vm.wait1 = false;
                 console.log(message.destinationName);
                 $timeout(function () {
-                    if (data) {
+                    if (data && data!="ESP_reconnected") {
                         vm.zone_1 = data.split(",")
                         if (vm.zone_1[4] === "on" || vm.zone_1[4] === "off") {
                             vm.fan_1 = vm.zone_1[4] === "on" ? true : false;
@@ -112,12 +112,12 @@
                         console.log(vm.zone_1);
                     }
                 })
-            } else if (message.destinationName == "control2") {
+            } else if (message.destinationName == "event2") {
                 var data = message.payloadString;
                 vm.connected2 = true;
                 vm.wait2 = false;
                 $timeout(function () {
-                    if (data) {
+                    if (data && data!="ESP_reconnected") {
                         vm.zone_2 = data.split(",")
                         if (vm.zone_2[4] === "on" || vm.zone_2[4] === "off") {
                             vm.fan_2 = vm.zone_2[4] === "on" ? true : false;
