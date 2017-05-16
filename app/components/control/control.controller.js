@@ -44,14 +44,14 @@
         client2.onConnectionLost = onConnectionLost2;
         client2.onMessageArrived = onMessageArrived2;
         var options = {
-            useSSL: false,
+            useSSL: true,
             userName: "ctcjmuyy",
             password: "NFFKErc6QcQt",
             onSuccess: onConnect,
             onFailure: doFail
         }
         var options2 = {
-            useSSL: false,
+            useSSL: true,
             userName: "fjrogfas",
             password: "7gyv_yt4tEel",
             onSuccess: onConnect2,
