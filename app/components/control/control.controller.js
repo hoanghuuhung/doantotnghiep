@@ -37,31 +37,48 @@
         var topicPublish2 = "control2";
         // var client = new Paho.MQTT.Client("host", port, "client_id");
         var client = new Paho.MQTT.Client("m20.cloudmqtt.com", 32733, "web_" + parseInt(Math.random() * 100, 10));
-
+        var client2 = new Paho.MQTT.Client("m12.cloudmqtt.com", 38070, "web_" + parseInt(Math.random() * 100, 10));
         // set callback handlers
         client.onConnectionLost = onConnectionLost;
         client.onMessageArrived = onMessageArrived;
+        client2.onConnectionLost = onConnectionLost2;
+        client2.onMessageArrived = onMessageArrived2;
         var options = {
-            useSSL: true,
+            useSSL: false,
             userName: "ctcjmuyy",
             password: "NFFKErc6QcQt",
             onSuccess: onConnect,
             onFailure: doFail
         }
+        var options2 = {
+            useSSL: false,
+            userName: "fjrogfas",
+            password: "7gyv_yt4tEel",
+            onSuccess: onConnect2,
+            onFailure: doFail2
+        }
 
         // connect the client
         client.connect(options);
+        client2.connect(options2);
 
         // called when the client connects
         function onConnect() {
             // Once a connection has been made, make a subscription and send a message.
             console.log("onConnect");
             client.subscribe("event1");
-            client.subscribe("event2");
             $timeout(function () {
                 vm.connected1 = true;
-                vm.connected2 = true;
                 vm.wait1 = false;
+            });
+        }
+
+        function onConnect2() {
+            // Once a connection has been made, make a subscription and send a message.
+            console.log("onConnect2");
+            client2.subscribe("event2");
+            $timeout(function () {
+                vm.connected2 = true;
                 vm.wait2 = false;
             });
         }
@@ -69,18 +86,33 @@
         function doFail(e) {
             console.log(e);
         }
+        function doFail2(e) {
+            console.log(e);
+        }
 
 
-        function sendMessage(detination, message) {
+
+        function sendMessage(destination, message) {
             var message = new Paho.MQTT.Message(message);
-            message.destinationName = detination;
+            message.destinationName = destination;
             client.send(message);
+        }
+
+        function sendMessage2(destination, message) {
+            var message = new Paho.MQTT.Message(message);
+            message.destinationName = destination;
+            client2.send(message);
         }
 
         // called when the client loses its connection
         function onConnectionLost(responseObject) {
             if (responseObject.errorCode !== 0) {
                 console.log("onConnectionLost:" + responseObject.errorMessage);
+            }
+        }
+         function onConnectionLost2(responseObject) {
+            if (responseObject.errorCode !== 0) {
+                console.log("onConnectionLost2:" + responseObject.errorMessage);
             }
         }
 
@@ -93,7 +125,7 @@
                 vm.wait1 = false;
                 console.log(message.destinationName);
                 $timeout(function () {
-                    if (data && data!="ESP_reconnected") {
+                    if (data && data != "ESP_reconnected") {
                         vm.zone_1 = data.split(",")
                         if (vm.zone_1[4] === "on" || vm.zone_1[4] === "off") {
                             vm.fan_1 = vm.zone_1[4] === "on" ? true : false;
@@ -113,12 +145,17 @@
                         console.log(vm.zone_1);
                     }
                 })
-            } else if (message.destinationName == "event2") {
+            }
+        }
+
+        function onMessageArrived2(message) {
+            console.log("onMessageArrived2:" + message.payloadString);
+             if (message.destinationName == "event2") {
                 var data = message.payloadString;
                 vm.connected2 = true;
                 vm.wait2 = false;
                 $timeout(function () {
-                    if (data && data!="ESP_reconnected") {
+                    if (data && data != "ESP_reconnected") {
                         vm.zone_2 = data.split(",")
                         if (vm.zone_2[4] === "on" || vm.zone_2[4] === "off") {
                             vm.fan_2 = vm.zone_2[4] === "on" ? true : false;
@@ -158,7 +195,7 @@
                 console.log('fan2', vm.fan_2);
                 vm.wait2 = true;
                 var msg = vm.fan_2 ? "of2" : "ff2";
-                sendMessage(topicPublish2, msg);
+                sendMessage2(topicPublish2, msg);
             } else {
                 console.log('wait...')
             }
@@ -180,7 +217,7 @@
                 console.log('pumb2', vm.pumb_2);
                 vm.wait2 = true;
                 var msg = vm.pumb_2 ? "op2" : "fp2";
-                sendMessage(topicPublish2, msg);
+                sendMessage2(topicPublish2, msg);
             } else {
                 console.log('wait...')
             }
@@ -202,7 +239,7 @@
                 console.log('boiler2', vm.boiler_2);
                 vm.wait2 = true;
                 var msg = vm.boiler_2 ? "ob2" : "fb2";
-                sendMessage(topicPublish2, msg);
+                sendMessage2(topicPublish2, msg);
             } else {
                 console.log('wait...')
             }
@@ -237,7 +274,7 @@
                 console.log('light2', vm.light_2);
                 vm.wait2 = true;
                 var msg = vm.light_2 ? "ol2" : "fl2";
-                sendMessage(topicPublish2, msg);
+                sendMessage2(topicPublish2, msg);
             } else {
                 console.log('wait...')
             }
@@ -249,7 +286,7 @@
                 console.log('mode2', vm.manual_2);
                 vm.wait2 = true;
                 var msg = vm.manual_2 ? "ma2" : "au2";
-                sendMessage(topicPublish2, msg);
+                sendMessage2(topicPublish2, msg);
             } else {
                 console.log('wait...')
             }
