@@ -249,7 +249,7 @@
                 console.log('mode2', vm.manual_2);
                 vm.wait2 = true;
                 var msg = vm.manual_2 ? "ma2" : "au2";
-                sendMessage(topicPublish1, msg);
+                sendMessage(topicPublish2, msg);
             } else {
                 console.log('wait...')
             }
