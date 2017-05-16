@@ -245,8 +245,8 @@
 
         function mode2Change() {
             if (!vm.wait2) {
-                vm.manual_1 = !vm.manual_2;
-                console.log('mode1', vm.manual_2);
+                vm.manual_2 = !vm.manual_2;
+                console.log('mode2', vm.manual_2);
                 vm.wait2 = true;
                 var msg = vm.manual_2 ? "ma2" : "au2";
                 sendMessage(topicPublish1, msg);
