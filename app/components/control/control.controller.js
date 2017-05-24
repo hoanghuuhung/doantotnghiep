@@ -33,6 +33,7 @@
         vm.wait1 = false;
         vm.connected2 = false;
         vm.wait2 = false;
+        vm.listType = [];
         var topicPublish1 = "control1";
         var topicPublish2 = "control2";
         // var client = new Paho.MQTT.Client("host", port, "client_id");

@@ -19,5 +19,13 @@
                 <span class="menu-title">Điều khiển</span>
             </a>
         </li>
+         <li ng-class="{active: $state.includes('index.setting')}">
+            <a ui-sref="index.setting">
+                <i class="fa fa-cog fa-fw">
+                    <div class="icon-bg bg-orange"></div>
+                    </i>
+                <span class="menu-title">Cài đặt</span>
+            </a>
+        </li>
     </ul>
 </div>
