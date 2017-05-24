@@ -43,6 +43,13 @@
         client.onMessageArrived = onMessageArrived;
         client2.onConnectionLost = onConnectionLost2;
         client2.onMessageArrived = onMessageArrived2;
+        vm.zone1 = {
+            id: 1
+        };
+        vm.zone2 = {
+            id: 2
+        }
+        vm.send = send;
         var options = {
             useSSL: true,
             userName: "ctcjmuyy",
@@ -110,7 +117,7 @@
                 console.log("onConnectionLost:" + responseObject.errorMessage);
             }
         }
-         function onConnectionLost2(responseObject) {
+        function onConnectionLost2(responseObject) {
             if (responseObject.errorCode !== 0) {
                 console.log("onConnectionLost2:" + responseObject.errorMessage);
             }
@@ -150,7 +157,7 @@
 
         function onMessageArrived2(message) {
             console.log("onMessageArrived2:" + message.payloadString);
-             if (message.destinationName == "event2") {
+            if (message.destinationName == "event2") {
                 var data = message.payloadString;
                 vm.connected2 = true;
                 vm.wait2 = false;
@@ -289,6 +296,16 @@
                 sendMessage2(topicPublish2, msg);
             } else {
                 console.log('wait...')
+            }
+        }
+
+        function send(id) {
+            if (id == 1) {
+                var msg = JSON.stringify(vm.zone1);
+                sendMessage(topicPublish1, msg)
+            } else {
+                var msg = JSON.stringify(vm.zone2);
+                sendMessage2(topicPublish2, msg)
             }
         }
     }
