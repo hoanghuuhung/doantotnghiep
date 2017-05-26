@@ -26,13 +26,12 @@
                                         <th>ĐỘ ẨM THẤP NHẤT</th>
                                     </tr>
                                     <tbody>
-                                        <tr ng-repeat="item in vm.zone1">
-                                            <td><input type="text" ng-model="item.type " /></td>
-                                            <td><input type="number" ng-model="item.highTemp " /></td>
-                                            <td><input type="number" ng-model="item.lowTemp " /></td>
-                                            <td><input type="number" ng-model="item.highHud " /></td>
-                                            <td><input type="number" ng-model="item.lowHud " /></td>
-                                        </tr>
+                                        <td> <select style="width:100%" id="extra-service" lang="en" class="form-control" ng-model="vm.item1"
+                                               ng-change="vm.zone1Change(vm.item1)" ng-options="et as et.type for et in vm.zone1 track by et.type"></select></td>
+                                        <td><input type="number" ng-model="vm.item1.highTemp " /></td>
+                                        <td><input type="number" ng-model="vm.item1.lowTemp " /></td>
+                                        <td><input type="number" ng-model="vm.item1.highHud " /></td>
+                                        <td><input type="number" ng-model="vm.item1.lowHud " /></td>
                                     </tbody>
                                 </thead>
                             </table>
@@ -71,12 +70,14 @@
                                         <th>ĐỘ ẨM THẤP NHẤT</th>
                                     </tr>
                                     <tbody>
-                                        <tr ng-repeat="item in vm.zone2">
-                                            <td><input type="text" ng-model="item.type " /></td>
-                                            <td><input type="number" ng-model="item.highTemp " /></td>
-                                            <td><input type="number" ng-model="item.lowTemp " /></td>
-                                            <td><input type="number" ng-model="item.highHud " /></td>
-                                            <td><input type="number" ng-model="item.lowHud " /></td>
+                                        <tr>
+                                            <td> <select style="width:100%" id="extra-service" lang="en" class="form-control"
+                                             ng-change="vm.zone2Change(vm.item2)"
+                                                    ng-model="vm.item2" ng-options="et as et.type for et in vm.zone2 track by et.type"></select></td>
+                                            <td><input type="number" ng-model="vm.item2.highTemp " /></td>
+                                            <td><input type="number" ng-model="vm.item2.lowTemp " /></td>
+                                            <td><input type="number" ng-model="vm.item2.highHud " /></td>
+                                            <td><input type="number" ng-model="vm.item2.lowHud " /></td>
                                         </tr>
                                     </tbody>
                                 </thead>

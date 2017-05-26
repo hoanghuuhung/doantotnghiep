@@ -73,8 +73,10 @@
         if (!$localStorage.zone2) {
             $localStorage.zone2 = vm.zone2Default;
         }
-        vm.zone1 = $localStorage.zone1;
-        vm.zone2 = $localStorage.zone2
+        vm.zone1 = angular.copy($localStorage.zone1);
+        vm.zone2 = angular.copy($localStorage.zone2);
+        vm.item1 = vm.zone1[0];
+        vm.item2 = vm.zone2[0];
         vm.send = send;
         var options = {
             useSSL: true,
@@ -90,11 +92,13 @@
             onSuccess: onConnect2,
             onFailure: doFail2
         }
-
+        vm.zone1Change = zone1Change;
+        vm.zone2Change = zone2Change;
         // connect the client
         client.connect(options);
         client2.connect(options2);
-
+        vm.index1 = 0;
+        vm.index2 = 0;
         // called when the client connects
         function onConnect() {
             // Once a connection has been made, make a subscription and send a message.
@@ -173,14 +177,32 @@
 
         function send(id) {
             if (id == 1) {
+                vm.zone1[vm.index1] = vm.item1;
                 $localStorage.zone1 = vm.zone1;
-                var msg = JSON.stringify(vm.zone1);
+                var msg = JSON.stringify(vm.item1);
                 sendMessage(topicPublish1, msg)
             } else {
+                vm.zone1[vm.index2] = vm.item2;
                 $localStorage.zone2 = vm.zone2;
-                var msg = JSON.stringify(vm.zone2);
+                var msg = JSON.stringify(vm.item2);
                 sendMessage2(topicPublish2, msg)
             }
+        }
+
+        function zone1Change(item) {
+            $timeout(function () {
+                vm.item1 = item;
+                var index = _.findIndex(vm.zone1, vm.item1)
+                vm.index1 = index;
+            })
+        }
+        function zone2Change(item) {
+            $timeout(function () {
+                vm.item2 = item;
+                var index = _.findIndex(vm.zone2, vm.item2)
+                vm.index2 = index;
+
+            })
         }
     }
 })();
