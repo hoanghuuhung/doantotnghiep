@@ -179,12 +179,16 @@
             if (id == 1) {
                 vm.zone1[vm.index1] = vm.item1;
                 $localStorage.zone1 = vm.zone1;
-                var msg = JSON.stringify(vm.item1);
+                var item = agular.copy(vm.item1);
+                delete item.type;
+                var msg = JSON.stringify(item);
                 sendMessage(topicPublish1, msg)
             } else {
                 vm.zone1[vm.index2] = vm.item2;
                 $localStorage.zone2 = vm.zone2;
-                var msg = JSON.stringify(vm.item2);
+                var item = agular.copy(vm.item2);
+                delete item.type;
+                var msg = JSON.stringify(item);
                 sendMessage2(topicPublish2, msg)
             }
         }
