@@ -23,21 +23,21 @@
         client2.onMessageArrived = onMessageArrived2;
         vm.zone1Default = [
             {
-                type: "xalach",
+                type: "Xà Lách",
                 highTemp: 25,
                 lowTemp: 15,
                 highHud: 80,
                 lowHud: 70
             },
             {
-                type: "boxoi",
+                type: "Bó Xôi",
                 highTemp: 20,
                 lowTemp: 15,
                 highHud: 80,
                 lowHud: 70
             },
             {
-                type: "caibap",
+                type: "Cải Bắp",
                 highTemp: 20,
                 lowTemp: 18,
                 highHud: 85,
@@ -172,9 +172,6 @@
                 vm.wait2 = false;
             }
         }
-
-
-
         function send(id) {
             if (id == 1) {
                 vm.zone1[vm.index1] = vm.item1;
