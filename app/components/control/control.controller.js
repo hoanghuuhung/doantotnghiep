@@ -147,8 +147,8 @@
                         if (vm.zone_1[6] === "on" || vm.zone_1[6] === "off") {
                             vm.boiler_1 = vm.zone_1[6] === "on" ? true : false;
                         }
-                        if (vm.zone_1[7] === 0 || vm.zone_1[7] === 1) {
-                            vm.manual_1 = vm.zone_1[7] === 1 ? true : false;
+                        if (vm.zone_1[7] == 0 || vm.zone_1[7] == 1) {
+                            vm.manual_1 = vm.zone_1[7] == 1 ? true : false;
                         }
                         console.log(vm.zone_1);
                     }
@@ -177,8 +177,8 @@
                         if (vm.zone_2[6] === "on" || vm.zone_2[6] === "off") {
                             vm.boiler_2 = vm.zone_2[6] === "on" ? true : false;
                         }
-                        if (vm.zone_2[7] === 1 || vm.zone_7[7] === 0) {
-                            vm.manual_2 = vm.zone_2[7] === 1 ? true : false;
+                        if (vm.zone_2[7] == 1 || vm.zone_7[7] == 0) {
+                            vm.manual_2 = vm.zone_2[7] == 1 ? true : false;
                         }
                         console.log(vm.zone_2);
                     }
