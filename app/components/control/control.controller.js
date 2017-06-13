@@ -38,7 +38,7 @@
         var topicPublish2 = "control2";
         // var client = new Paho.MQTT.Client("host", port, "client_id");
         var client = new Paho.MQTT.Client("m20.cloudmqtt.com", 32733, "web_" + parseInt(Math.random() * 100, 10));
-        var client2 = new Paho.MQTT.Client("m12.cloudmqtt.com", 38070, "web_" + parseInt(Math.random() * 100, 10));
+        var client2 = new Paho.MQTT.Client("m20.cloudmqtt.com", 32666, "web_" + parseInt(Math.random() * 100, 10));
         // set callback handlers
         client.onConnectionLost = onConnectionLost;
         client.onMessageArrived = onMessageArrived;
@@ -60,8 +60,8 @@
         }
         var options2 = {
             useSSL: true,
-            userName: "fjrogfas",
-            password: "7gyv_yt4tEel",
+            userName: "imhjhfju",
+            password: "WnoHeNJQQZjI",
             onSuccess: onConnect2,
             onFailure: doFail2
         }
