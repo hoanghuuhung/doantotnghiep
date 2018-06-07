@@ -24,7 +24,7 @@
         vm.zone1Default = [
             {
                 type: "Xà Lách",
-                highTemp: 25,
+                high: 25,
                 lowTemp: 15,
                 highHud: 80,
                 lowHud: 70
